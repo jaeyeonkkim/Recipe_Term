@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.java.model.vo.ContestInfo;
 import com.java.model.vo.Ingredient;
 import com.java.model.vo.Recipe;
 import com.java.model.vo.RecipewayAndInfo;
@@ -235,7 +236,41 @@ public class RecipeDAO {
 		return false;
 
 	}
-	
+
+	public ArrayList<ContestInfo> contestinfoRecipe() {
+
+		ArrayList<ContestInfo> list = new ArrayList<ContestInfo>();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "select u.id, r.recipename, r.purl, c.CONTESTNUM, r.RECIPE_NUM " 
+				+ "from contest c, recipe r, user_ u "
+				+ "where c.recipe_num = r.recipe_num and u.usernum = r.usernum "
+				+ "and (select sysdate from dual) between c.startdate and c.enddate";
+
+		
+		
+		
+		
+		try {
+			conn = DButil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				list.add(new ContestInfo(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DButil.close(stmt);
+			DButil.close(conn);
+			DButil.close(rs);
+		}
+		return list;
+	}
 
 
 }

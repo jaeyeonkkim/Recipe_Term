@@ -72,8 +72,10 @@
 				</tbody>
 			</table>
 			<div id=BackStyle>
-				<a href="contest.jsp"><input type="submit" value="Back"
-					class="btn btn-outline-secondary" /></a>
+			<form method="post" action="./contestinfo.do">
+			<input type="submit" value="Back"
+					class="btn btn-outline-secondary" />
+			</form>
 			</div>
 		</div>
 	</div>

@@ -29,7 +29,7 @@
 </head>
 <body>
 
-<form id=contestStyle method="post" action="contest.jsp">
+<form id=contestStyle method="post" action="./contestinfo.do">
 				<fieldset>
 					<legend>레시피 경쟁</legend>
 					<div class="form-group">

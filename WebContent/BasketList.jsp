@@ -47,7 +47,7 @@ body, h1, h2, h3, h4, h5, h6 {
 						<td><%=ingredient.getIndName()%></td>
 						<td><%=ingredient.getAmount()%></td>
 						<td><form method="post"
-								action="./CancelIngredient.do?indnum=<%=ingredient.getIndnum()%>&top=all">
+								action="./CancelIngredient.do?indnum=<%=ingredient.getIndnum()%>&list=all">
 								<input type="submit" value="취소"
 									class="btn btn-outline-secondary" />
 							</form></td>

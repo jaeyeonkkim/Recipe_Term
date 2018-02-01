@@ -11,17 +11,21 @@ import com.java.util.DButil;
 
 public class ContestDAO {
 
-	public boolean vote1(int usernum) {
+	public boolean Vote(int contestnum, int recipenum, int usernum) {
+
 		Connection conn = null;
 		PreparedStatement stmt = null;
-		String sql = "update contest " 
-				+ "set candidate = 1 " + "where candidate is null " + "and usernum = ?";
+
+		String sql = "INSERT INTO CONTESTRESULT " 
+					+ "VALUES (?,?,?)";
 
 		try {
 			conn = DButil.getConnection();
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, usernum);
-			stmt.executeQuery();
+			stmt.setInt(1, contestnum);
+			stmt.setInt(2, recipenum);
+			stmt.setInt(3, usernum);
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -30,37 +34,19 @@ public class ContestDAO {
 			DButil.close(conn);
 		}
 		return false;
+
 	}
 
-	public boolean vote2(int usernum) {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		
-		String sql = "update contest "
-				+ "set candidate = 2 " + "where candidate is null " + "and usernum = ?";
 
-		try {
-			conn = DButil.getConnection();
-			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, usernum);
-			stmt.executeQuery();
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DButil.close(stmt);
-			DButil.close(conn);
-		}
-		return false;
-	}
 	
-	public int vote3(int usernum) {
+	public int voteDuplicationCheck(int usernum) {
 		int cnt=0;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "select candidate "
-				+ "from contest "
+		String sql = "select cr.usernum "
+				+ "from contestresult cr "
 				+ "where usernum = ?";
 		
 		try {
@@ -87,9 +73,9 @@ public class ContestDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		String sql = "select count(*) " 
-						+ "from contest c " 
-							+ "where candidate is not null "
-								+ "group by c.CANDIDATE";
+						+ "from contestresult cr join  contest c on SYSDATE between c.startdate and c.enddate " 
+						+ "where c.RECIPE_NUM=cr.recipe_num "
+						+ "group by c.CANDIDATE_NUM";
 
 		try {
 			conn = DButil.getConnection();
