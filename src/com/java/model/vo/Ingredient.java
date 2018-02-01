@@ -9,11 +9,12 @@ public class Ingredient {
 	private String recipename;
 	private int recipenum;
 
-	public Ingredient(String indName, String amount, int indnum) {
+	public Ingredient(String indName, String amount, int indnum, String recipename) {
 		super();
 		this.indName = indName;
 		this.amount = amount;
 		this.indnum=indnum;
+		this.recipename =recipename;
 	}
 
 	public Ingredient(String indName, String amount, int indnum, String recipename, int recipenum) {

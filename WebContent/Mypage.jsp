@@ -27,8 +27,7 @@
 			</h3>
 			<jsp:include page="MyPageManu.jsp" />
 			
-				<img src="https://www.w3schools.com/w3images/coffeeshop.jpg"
-					style="width: 100%; max-width: 1000px" class="w3-margin-top">
+				
 			
 		</div>
 	</div>

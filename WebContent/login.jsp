@@ -42,7 +42,7 @@
 						${sessionScope.user.userId}님 로그인 중
 					</div>
 					<a href="./logout.do" class="btn btn-outline-secondary">logout</a>
-					<a href="./Mypage.jsp" class="btn btn-outline-secondary">My page</a>
+					<a href="./MyRecipe.do" class="btn btn-outline-secondary">My page</a>
 					<a href="./enroll.jsp" class="btn btn-outline-secondary">Enroll<br>Recipe</a>
 				</fieldset>
 

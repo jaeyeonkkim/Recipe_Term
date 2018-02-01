@@ -39,28 +39,29 @@
 					%>
 					<tr>
 
-						<td><a
-							href="./searchrecipe.do?recipename=<%=myRecipe.getRecipename()%>&recipenum=<%=myRecipe.getRecipenum()%>">
-								<%=myRecipe.getRecipename()%></a></td>
+						<td><a href="./searchrecipe.do?recipename=<%=myRecipe.getRecipename()%>&recipenum=<%=myRecipe.getRecipenum()%>">
+							<%=myRecipe.getRecipename()%></a>
+						</td>
 						<td><%=myRecipe.getRtype()%></td>
 						<td><%=myRecipe.getRlevel()%></td>
 						<td><%=myRecipe.getRtime()%></td>
 						<td><form method="post"
-								action="./CancelMyRecipe.do?recipenum=<%=myRecipe.getRecipenum()%>&list=all">
+								action="./CancelMyRecipe.do?recipenum=<%=myRecipe.getRecipenum()%>&list=top3">
 								<input type="submit" value="취소"
 									class="btn btn-outline-secondary" />
 							</form></td>
 					</tr>
+					
 					<%
 						}%>
 						<tr>
 						<td>
-						<form method="get"action="./MyRecipe.do">
-							<input type="submit" value="접기" class="btn btn-outline-secondary" />
+						<form method="post"action="./MyRecipe.do">
+							<input type="submit" value="더보기" class="btn btn-outline-secondary" />
 							</form>
 						</td>
 						</tr>
-						<%
+					<%
 						} else {
 					%>
 					<tr>
@@ -69,6 +70,7 @@
 						</td>
 					</tr>
 					<% }%>
+					
 				</tbody>
 			</table>
 			

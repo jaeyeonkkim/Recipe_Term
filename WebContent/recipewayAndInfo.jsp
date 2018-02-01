@@ -100,7 +100,9 @@
 					<tr>
 						<th width="100">재료명</th>
 						<th width="150">수량</th>
+						<c:if test="${sessionScope.user != null}">
 						<th width="100">장바구니</th>
+						</c:if>
 					</tr>
 				</thead>
 

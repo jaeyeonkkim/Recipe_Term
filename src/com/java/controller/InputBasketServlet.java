@@ -32,22 +32,34 @@ public class InputBasketServlet extends HttpServlet {
 		String recipename = request.getParameter("recipename");
 		String recipenumm = request.getParameter("recipenum");
 		int recipenum = Integer.parseInt(recipenumm);
-		
+
 		String indnumm = request.getParameter("indnum");
 		int indnum = Integer.parseInt(indnumm);
 		//////////////////////////////////////////////////////////////////////////////
 		BasketDAO basketDao = new BasketDAO();
-		basketDao.inputBasket(usernum, indnum);
-		
-		RecipeDAO recipeDao = new RecipeDAO();
-		ArrayList<RecipewayAndInfo> recipewayAndInfo = recipeDao.getRecipeWay(recipename);
-		request.setAttribute("recipewayAndInfo", recipewayAndInfo);
-		ArrayList<Ingredient> recipeIngredint = recipeDao.getRecipeIngredient(recipenum);
-		request.setAttribute("recipeIngredient", recipeIngredint);
-		RequestDispatcher rd = request.getRequestDispatcher("recipewayAndInfo.jsp");
-		rd.forward(request, response);
+		boolean ingredientDuplicationCheck = basketDao.ingredientDuplicationCheck(indnum);
 
-		return;
+		RecipeDAO recipeDao = new RecipeDAO();
+
+		if (ingredientDuplicationCheck) {
+			ArrayList<RecipewayAndInfo> recipewayAndInfo = recipeDao.getRecipeWay(recipename);
+			request.setAttribute("recipewayAndInfo", recipewayAndInfo);
+			ArrayList<Ingredient> recipeIngredint = recipeDao.getRecipeIngredient(recipenum);
+			request.setAttribute("recipeIngredient", recipeIngredint);
+			RequestDispatcher rd = request.getRequestDispatcher("recipewayAndInfo.jsp");
+			rd.forward(request, response);
+			return;
+		} else {
+			basketDao.inputBasket(usernum, indnum);
+
+			ArrayList<RecipewayAndInfo> recipewayAndInfo = recipeDao.getRecipeWay(recipename);
+			request.setAttribute("recipewayAndInfo", recipewayAndInfo);
+			ArrayList<Ingredient> recipeIngredint = recipeDao.getRecipeIngredient(recipenum);
+			request.setAttribute("recipeIngredient", recipeIngredint);
+			RequestDispatcher rd = request.getRequestDispatcher("recipewayAndInfo.jsp");
+			rd.forward(request, response);
+			return;
+		}
 
 	}
 

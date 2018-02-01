@@ -18,8 +18,9 @@
 
 		<div style="width: 60%; float: left">
 			<h3 class="w3-center w3-padding-64">
-				<span class="w3-tag w3-wide w3-xlarge">구독자</span>
+				<span class="w3-tag w3-wide w3-xlarge">나를 구독한 사람들</span>
 			</h3>
+			<jsp:include page="MyPageManu.jsp" />
 			<table class="w3-table">
 				<thead>
 					<tr>
@@ -51,11 +52,7 @@
 
 				</tbody>
 			</table>
-			<p>
-				<img
-					src="https://images.unsplash.com/photo-1415226581130-91cb7f52f078?auto=format&fit=crop&w=967&q=80.jpg"
-					style="width: 100%; max-width: 1000px" class="w3-margin-top">
-			</p>
+			
 		</div>
 	</div>
 

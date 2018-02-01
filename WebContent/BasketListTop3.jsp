@@ -47,22 +47,21 @@ body, h1, h2, h3, h4, h5, h6 {
 						<td><%=ingredient.getIndName()%></td>
 						<td><%=ingredient.getAmount()%></td>
 						<td><form method="post"
-								action="./CancelIngredient.do?indnum=<%=ingredient.getIndnum()%>&top=all">
+								action="./CancelIngredient.do?indnum=<%=ingredient.getIndnum()%>&list=top3">
 								<input type="submit" value="취소"
 									class="btn btn-outline-secondary" />
 							</form></td>
 					</tr>
 					
-					<%
-						}%>
+					<%}%>
 						<tr>
-						<td>
-						<form method="get"action="./Basket.do">
-							<input type="submit" value="접기" class="btn btn-outline-secondary" />
-							</form>
-						</td>
-						</tr>
-						<%
+					<td>
+					<form method="post"action="./Basket.do">
+						<input type="submit" value="더보기" class="btn btn-outline-secondary" />
+					</form>
+					</td>
+					</tr>
+					<%
 						} else {
 					%>
 					<tr>
@@ -73,12 +72,10 @@ body, h1, h2, h3, h4, h5, h6 {
 					<%
 						}
 					%>
+					
 
 				</tbody>
 			</table>
-			<form method="post" action="./ResetBasket.do">
-				<input type="submit" value="비우기" class="btn btn-outline-secondary" />
-			</form>
 			
 		</div>
 	</div>

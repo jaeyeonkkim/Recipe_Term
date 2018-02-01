@@ -11,6 +11,32 @@ import com.java.util.DButil;
 
 public class SubscribeDAO {
 
+	public boolean subscribeDuplicationCheck(int usernum) {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		String sql = "SELECT u.USERNUM " 
+					+ "FROM USER_ u, SUBSCRIBER s "
+					+ "where s.USERNUM=? "
+					+ "and s.USERNUM=u.USERNUM";
+		
+		try {
+			conn = DButil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, usernum);
+			return stmt.executeUpdate()>0;
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DButil.close(stmt);
+			DButil.close(conn);
+		}
+		return false;
+	}
+	
 	public boolean subscribeUser(int usernum, int mynum) {
 
 		Connection conn = null;

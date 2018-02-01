@@ -19,25 +19,34 @@ import com.java.model.vo.User;
 public class CancelIngredientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("utf-8");
-		
+
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		int usernum = user.getUsernum();
+		String list = request.getParameter("list");
 		String indnumm = request.getParameter("indnum");
 		int indnum = Integer.parseInt(indnumm);
-		
+
 		BasketDAO basketDao = new BasketDAO();
 		basketDao.cancelIngredient(usernum, indnum);
-		
-		ArrayList<Ingredient> ingredientList = basketDao.getIngredientList(usernum);
-		request.setAttribute("ingredientList", ingredientList);
-		RequestDispatcher rd = request.getRequestDispatcher("BasketList.jsp");
-		rd.forward(request, response);
-		return;
-	}
 
+		if (list.equals("top3")) {
+			ArrayList<Ingredient> ingredientList = basketDao.getIngredientListTop3(usernum);
+			request.setAttribute("ingredientList", ingredientList);
+			RequestDispatcher rd = request.getRequestDispatcher("BasketListTop3.jsp");
+			rd.forward(request, response);
+			return;
+		} else {
+
+			ArrayList<Ingredient> ingredientList = basketDao.getIngredientList(usernum);
+			request.setAttribute("ingredientList", ingredientList);
+			RequestDispatcher rd = request.getRequestDispatcher("BasketList.jsp");
+			rd.forward(request, response);
+			return;
+		}
+	}
 }

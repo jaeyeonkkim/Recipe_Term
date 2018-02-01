@@ -25,16 +25,31 @@ public class MyRecipeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		int usernum = user.getUsernum();
-
 		MyRecipeDAO myRecipeDAO = new MyRecipeDAO();
 
-		ArrayList<Recipe> myRecipeList = myRecipeDAO.getMyRecipeList(usernum);
+		ArrayList<Recipe> myRecipeList = myRecipeDAO.getMyRecipeListTop3(usernum);
 		request.setAttribute("myRecipeList", myRecipeList);
-
-		RequestDispatcher rd = request.getRequestDispatcher("MyRecipeList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("MyRecipeListTop3.jsp");
 		rd.forward(request, response);
 		return;
 
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.setCharacterEncoding("utf-8");
+
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		int usernum = user.getUsernum();
+		MyRecipeDAO myRecipeDAO = new MyRecipeDAO();
+
+		ArrayList<Recipe> myRecipeList = myRecipeDAO.getMyRecipeList(usernum);
+		request.setAttribute("myRecipeList", myRecipeList);
+		RequestDispatcher rd = request.getRequestDispatcher("MyRecipeList.jsp");
+		rd.forward(request, response);
+		return;
+
+	}
 }

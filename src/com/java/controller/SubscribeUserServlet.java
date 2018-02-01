@@ -21,33 +21,46 @@ import com.java.model.vo.User;
 public class SubscribeUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("utf-8");
-		
+
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		int mynum = user.getUsernum();
 		String usernumm = request.getParameter("usernum");
-		int usernum= Integer.parseInt(usernumm );
+		int usernum = Integer.parseInt(usernumm);
 		
-		SubscribeDAO subscriberDao = new SubscribeDAO();
-		subscriberDao.subscribeUser(usernum, mynum);
-		////////////////////////////////////////////////////
 		String recipename = request.getParameter("recipename");
 		String recipenumm = request.getParameter("recipenum");
 		int recipenum = Integer.parseInt(recipenumm);
-		
-		RecipeDAO recipeDao = new RecipeDAO();
-		ArrayList<RecipewayAndInfo> recipewayAndInfo = recipeDao.getRecipeWay(recipename);
-		request.setAttribute("recipewayAndInfo", recipewayAndInfo);
-		ArrayList<Ingredient> recipeIngredint = recipeDao.getRecipeIngredient(recipenum);
-		request.setAttribute("recipeIngredient", recipeIngredint);
-		RequestDispatcher rd = request.getRequestDispatcher("recipewayAndInfo.jsp");
-		rd.forward(request, response);
+		////////////////////////////////////////////////////
 
-		return;
+		SubscribeDAO subscriberDao = new SubscribeDAO();
+		boolean subscribeDuplicationCheck = subscriberDao.subscribeDuplicationCheck(usernum);
+		RecipeDAO recipeDao = new RecipeDAO();
+
+		if (subscribeDuplicationCheck || (mynum==usernum)) {
+			ArrayList<RecipewayAndInfo> recipewayAndInfo = recipeDao.getRecipeWay(recipename);
+			request.setAttribute("recipewayAndInfo", recipewayAndInfo);
+			ArrayList<Ingredient> recipeIngredint = recipeDao.getRecipeIngredient(recipenum);
+			request.setAttribute("recipeIngredient", recipeIngredint);
+			RequestDispatcher rd = request.getRequestDispatcher("recipewayAndInfo.jsp");
+			rd.forward(request, response);
+			return;
+		} else {
+			subscriberDao.subscribeUser(usernum, mynum);
+			ArrayList<RecipewayAndInfo> recipewayAndInfo = recipeDao.getRecipeWay(recipename);
+			request.setAttribute("recipewayAndInfo", recipewayAndInfo);
+			ArrayList<Ingredient> recipeIngredint = recipeDao.getRecipeIngredient(recipenum);
+			request.setAttribute("recipeIngredient", recipeIngredint);
+			RequestDispatcher rd = request.getRequestDispatcher("recipewayAndInfo.jsp");
+			rd.forward(request, response);
+
+			return;
+		}
+
 	}
 
 }

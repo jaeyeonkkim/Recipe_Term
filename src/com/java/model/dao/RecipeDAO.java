@@ -120,7 +120,7 @@ public class RecipeDAO {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT r.RECIPE_NUM " // table명은 공백으로 띄워줘야한다.
+		String sql = "SELECT r.RECIPE_NUM " 
 				+ "FROM recipe r "
 				+ "where r.USERNUM = ? "
 				+ "and r.RECIPENAME= ?";
@@ -153,7 +153,7 @@ public class RecipeDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT r.RECIPE_NUM " // table명은 공백으로 띄워줘야한다.
+		String sql = "SELECT r.RECIPE_NUM " 
 				+ "FROM recipe r "
 				+ "where r.RECIPE_NUM= ?";
 		

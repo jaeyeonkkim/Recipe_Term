@@ -22,7 +22,8 @@ public class MyRecipeDAO {
 		String sql = "select r.recipename, r.rtype, r.rlevel, r.rtime, r.recipe_num " 
 							+ "from recipe r, myrecipe mr "
 							+ "where mr.usernum = ? " 
-							+ "and r.recipe_num = mr.recipe_num";
+							+ "and r.recipe_num = mr.recipe_num "
+							+ "ORDER BY scrapdate";
 
 		try {
 			conn = DButil.getConnection();
@@ -44,13 +45,74 @@ public class MyRecipeDAO {
 
 	}
 
+	public ArrayList<Recipe> getMyRecipeListTop3(int usernum) {
+
+		ArrayList<Recipe> list = new ArrayList<Recipe>();
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from "
+				+"(select r.recipename, r.rtype, r.rlevel, r.rtime, r.recipe_num " 
+							+ "from recipe r, myrecipe mr "
+							+ "where mr.usernum = ? " 
+							+ "and r.recipe_num = mr.recipe_num "
+							+ "ORDER BY scrapdate) "
+							+ "where rownum<=3";
+		try {
+			conn = DButil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, usernum);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				list.add(new Recipe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DButil.close(rs);
+			DButil.close(stmt);
+			DButil.close(conn);
+		}
+		return list;
+
+	}
+	
+	public boolean recipeDuplicationCheck(int recipenum) {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		String sql = "SELECT r.recipe_num " 
+					+ "FROM recipe r, MYRECIPE mr "
+					+ "where mr.RECIPE_NUM=? "
+					+ "and mr.RECIPE_NUM=r.RECIPE_NUM";
+		
+		try {
+			conn = DButil.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, recipenum);
+			return stmt.executeUpdate()>0;
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DButil.close(stmt);
+			DButil.close(conn);
+		}
+		return false;
+	}
+	
 	public boolean scrapRecipe(int recipenum , int usernum) {
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		String sql = "INSERT INTO MYRECIPE " 
-							+ "VALUES (?,?)";
+							+ "VALUES (?,?,SYSDATE)";
 
 		try {
 			conn = DButil.getConnection();

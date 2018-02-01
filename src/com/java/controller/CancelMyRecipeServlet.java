@@ -18,29 +18,36 @@ import com.java.model.vo.User;
 @WebServlet("/CancelMyRecipe.do")
 public class CancelMyRecipeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("utf-8");
-		
+
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		int usernum = user.getUsernum();
-		
+		String list = request.getParameter("list");
+
 		String recipenumm = request.getParameter("recipenum");
 		int recipenum = Integer.parseInt(recipenumm);
-		
+
 		MyRecipeDAO myRecipeDAO = new MyRecipeDAO();
 
 		myRecipeDAO.cancelMyRecipe(usernum, recipenum);
-		
-		ArrayList<Recipe> myRecipeList = myRecipeDAO.getMyRecipeList(usernum);
-		request.setAttribute("myRecipeList", myRecipeList);
-		RequestDispatcher rd = request.getRequestDispatcher("MyRecipeList.jsp");
-		rd.forward(request, response);
-		return;
-		
-	}
+		if (list.equals("top3")) {
+			ArrayList<Recipe> myRecipeList = myRecipeDAO.getMyRecipeListTop3(usernum);
+			request.setAttribute("myRecipeList", myRecipeList);
+			RequestDispatcher rd = request.getRequestDispatcher("MyRecipeListTop3.jsp");
+			rd.forward(request, response);
+			return;
+		} else {
 
+			ArrayList<Recipe> myRecipeList = myRecipeDAO.getMyRecipeList(usernum);
+			request.setAttribute("myRecipeList", myRecipeList);
+			RequestDispatcher rd = request.getRequestDispatcher("MyRecipeList.jsp");
+			rd.forward(request, response);
+			return;
+		}
+	}
 }
