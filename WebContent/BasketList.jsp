@@ -11,8 +11,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {
-    font-family: "Comic Sans MS", cursive, sans-serif;
+body, h1, h2, h3, h4, h5, h6 {
+	font-family: "Comic Sans MS", cursive, sans-serif;
 }
 </style>
 </head>
@@ -28,22 +28,27 @@ body,h1,h2,h3,h4,h5,h6 {
 			<h3 class="w3-center w3-padding-64">
 				<span class="w3-tag w3-wide w3-xlarge">장바구니</span>
 			</h3>
-			<table class="w3-table">
+			<table class="w3-table" width="800">
 				<thead>
 					<tr>
-						<th><h3>재료명</h3></th>
-						<th><h3>수량</h3></th>
+						<th width="150"><h3>재료명</h3></th>
+						<th width="150"><h3>수량</h3></th>
 					</tr>
 				</thead>
 				<tbody>
 					<%
 						ArrayList<Ingredient> ingredientList = (ArrayList<Ingredient>) request.getAttribute("ingredientList");
 						if (ingredientList.size() > 0) {
-							for (Ingredient ingredient : ingredientList) {
+						for (Ingredient ingredient : ingredientList) {
 					%>
 					<tr>
 						<td><%=ingredient.getIndName()%></td>
 						<td><%=ingredient.getAmount()%></td>
+						<td><form method="post"
+								action="./CancelIngredient.do?indnum=<%=ingredient.getIndnum()%>">
+								<input type="submit" value="취소"
+									class="btn btn-outline-secondary" />
+							</form></td>
 					</tr>
 					<%
 						}
@@ -51,7 +56,7 @@ body,h1,h2,h3,h4,h5,h6 {
 					%>
 					<tr>
 						<td colspan="2">
-							<h3>조회결과가 없습니다.</h3>
+							<h3>장바구니에 재료가 없습니다.</h3>
 						</td>
 					</tr>
 					<%
@@ -60,6 +65,10 @@ body,h1,h2,h3,h4,h5,h6 {
 
 				</tbody>
 			</table>
+			<form method="post"
+				action="./ResetBasket.do">
+				<input type="submit" value="비우기" class="btn btn-outline-secondary" />
+			</form>
 			<p>
 				<img
 					src="https://images.unsplash.com/photo-1441123285228-1448e608f3d5?auto=format&fit=crop&w=1350&q=80.jpg"

@@ -6,11 +6,23 @@ public class Ingredient {
 	private int recipe_num;
 	private String indName;
 	private String amount;
+	private String recipename;
+	private int recipenum;
 
-	public Ingredient(String indName, String amount) {
+	public Ingredient(String indName, String amount, int indnum) {
 		super();
 		this.indName = indName;
 		this.amount = amount;
+		this.indnum=indnum;
+	}
+
+	public Ingredient(String indName, String amount, int indnum, String recipename, int recipenum) {
+		super();
+		this.indName = indName;
+		this.amount = amount;
+		this.indnum = indnum;
+		this.recipename = recipename;
+		this.recipenum = recipenum;
 	}
 
 	public Ingredient() {
@@ -47,6 +59,22 @@ public class Ingredient {
 
 	public void setAmount(String amount) {
 		this.amount = amount;
+	}
+
+	public String getRecipename() {
+		return recipename;
+	}
+
+	public void setRecipename(String recipename) {
+		this.recipename = recipename;
+	}
+
+	public int getRecipenum() {
+		return recipenum;
+	}
+
+	public void setRecipenum(int recipenum) {
+		this.recipenum = recipenum;
 	}
 
 }

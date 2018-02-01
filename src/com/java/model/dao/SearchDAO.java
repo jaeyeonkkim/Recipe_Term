@@ -1,7 +1,6 @@
 package com.java.model.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,18 +10,6 @@ import com.java.model.vo.Recipe;
 import com.java.util.DButil;
 
 public class SearchDAO {
-   private static final String url = "jdbc:oracle:thin:@70.12.110.64:1521:XE";
-   private static final String userName = "scott";
-   private static final String userpassword= "tiger";
-   
-   static{
-      try {
-         Class.forName("oracle.jdbc.driver.OracleDriver");
-      } catch (ClassNotFoundException e) {
-         e.printStackTrace();
-      }
-      
-   }
    
    public ArrayList<Recipe> searchRecipeList(String keyField, String search){
       
@@ -33,23 +20,23 @@ public class SearchDAO {
       ResultSet rs = null;
       String sql;
       if(keyField.equals("Бо")){
-         sql = "select r.recipename, r.rlevel, r.purl "
+         sql = "select r.recipename, r.rlevel, r.purl, r.recipe_num "
                   + "from recipe r " 
                   + "where r.rlevel like '%'||?||'%' "
                   + "and r.recipename like '%'||?||'%' ";
          
       }else{
          
-          sql = "select r.recipename, r.rlevel, r.purl "
+          sql = "select r.recipename, r.rlevel, r.purl, r.recipe_num "
                + "from recipe r " 
                + "where r.rlevel = ? "
-               + "and r.recipename = ? ";
+               + "and r.recipename like '%'||?||'%' ";
       }
       
       
       
       try {
-         conn = DriverManager.getConnection(url, userName, userpassword);
+    	 conn = DButil.getConnection();
          stmt = conn.prepareStatement(sql);
          
             
@@ -57,7 +44,7 @@ public class SearchDAO {
          stmt.setString(2, search);
          rs = stmt.executeQuery();
          while(rs.next()){
-            list.add(new Recipe(rs.getString(1), rs.getString(2), rs.getString(3)));
+            list.add(new Recipe(rs.getString(1), rs.getString(2), rs.getString(3),rs.getInt(4)));
          }
              
       }catch (SQLException e) {

@@ -28,16 +28,25 @@
 </style>
 </head>
 <body>
-			<form id=loginStyle method="post" action="./Recipeway.do">
+<jsp:include page="top_menu.jsp"/>
+
+<div style="width:90%;overflow: hidden; margin: 0 auto">
+	<div style="width:30%;float:left">
+		<jsp:include page="login.jsp"/>
+	</div>
+			<%int recipenum = (int)request.getAttribute("recipeNum"); %>
+			<form id=loginStyle method="post" action="./enrollRecipeway.do?recipenum=<%=recipenum%>">
 				<fieldset>
 					<legend>Recipe</legend>
 					<div class="form-group">
 						<p for="exampleInputEmail1">입력하기</p> <input type="text"
 							class="form-control" id="exampleInputEmail1" placeholder=""
 							name="recipeway">
+					<input type="submit" value="조리법등록" class="btn btn-outline-secondary" name="more">
+					</form>
+					<form method="post" action="./enrollRecipewayComplete.do">
+					<input type="submit" value="조리법등록완료" class="btn btn-outline-secondary" name="end">
 					</div>
-					<input type="submit" value="Login" class="btn btn-outline-secondary" name="more">
-					<input type="reset" value="Back" class="btn btn-outline-secondary" name="end">
 					<input type="hidden" value="">
 				</fieldset>
 			</form>

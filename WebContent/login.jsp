@@ -43,7 +43,7 @@
 					</div>
 					<a href="./logout.do" class="btn btn-outline-secondary">logout</a>
 					<a href="./Mypage.jsp" class="btn btn-outline-secondary">My page</a>
-					<a href="./enroll.jsp" class="btn btn-outline-secondary">Recipe</a>
+					<a href="./enroll.jsp" class="btn btn-outline-secondary">Enroll<br>Recipe</a>
 				</fieldset>
 
 			</div>

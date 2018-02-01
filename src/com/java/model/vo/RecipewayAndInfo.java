@@ -8,6 +8,21 @@ public class RecipewayAndInfo {
 	private String rtime;
 	private int sequence;
 	private String story;
+	private int recipenum;
+	private int usernum;
+
+	public RecipewayAndInfo(String recipename, String rtype, String rlevel, String rtime, int sequence, String story,
+			int recipenum, int usernum) {
+		super();
+		this.recipename = recipename;
+		this.rtype = rtype;
+		this.rlevel = rlevel;
+		this.rtime = rtime;
+		this.sequence = sequence;
+		this.story = story;
+		this.recipenum = recipenum;
+		this.usernum = usernum;
+	}
 
 	public RecipewayAndInfo(String recipename, String rtype, String rlevel, String rtime, int sequence, String story) {
 		super();
@@ -17,6 +32,7 @@ public class RecipewayAndInfo {
 		this.rtime = rtime;
 		this.sequence = sequence;
 		this.story = story;
+
 	}
 
 	public String getRecipename() {
@@ -67,4 +83,20 @@ public class RecipewayAndInfo {
 		this.story = story;
 	}
 
+	public int getRecipenum() {
+		return recipenum;
+	}
+
+	public void setRecipenum(int recipenum) {
+		this.recipenum = recipenum;
+	}
+
+	public int getUsernum() {
+		return usernum;
+	}
+
+	public void setUsernum(int usernum) {
+		this.usernum = usernum;
+	}
+	
 }

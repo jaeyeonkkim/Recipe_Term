@@ -1,7 +1,7 @@
 <%@page import="com.java.model.vo.Recipe"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <title>Recipe Level</title>
@@ -20,38 +20,39 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 </style>
 <body>
-	<jsp:include page="top_menu.jsp" />
-	<jsp:include page="login.jsp" />
+<jsp:include page="top_menu.jsp" />
+<jsp:include page="login.jsp" />
 
-	<div class="w3-container" id="about">
-		<div class="w3-content" style="max-width: 700px">
+<div class="w3-container" id="about">
+	<div class="w3-content">
 			<h3 class="w3-center w3-padding-64">
-				<span class="w3-tag w3-wide w3-xlarge">검색결과.</span>
-			</h3>
+				<span class="w3-tag w3-wide w3-xlarge">검색결과</span></h3>
 
-			<table class="w3-table">
-				<%
-					ArrayList<Recipe> searchList = (ArrayList<Recipe>) request.getAttribute("searchList");
-					if (searchList.size() > 0) {
-				%>
+		<table class="w3-table">
 
-				<div class="w3-row-padding w3-padding-16 w3-center" id="food">
+		<%
+			ArrayList<Recipe> searchList = (ArrayList<Recipe>) request.getAttribute("searchList");
+			if (searchList.size() > 0) {%>
+				<tr>
+					<td>
+					
+					<div class=" w3-padding-16 w3-center" id="food" style = "max-width:300px">
 					<%
-						for (Recipe result : searchList) {
-					%>
-					<div class="w3-quarter">
-						<img src="<%=result.getPurl()%>" alt="Sandwich"
-							style="width: 100%">
-						<h2>
-							<a
-								href="./searchrecipe.do?recipename=<%=result.getRecipename()%>">
-								<%=result.getRecipename()%></a>
-						</h2>
+					for (Recipe result : searchList) { %>
+						<div class="w3-content" style="float: left; width: 33%;">
+							<img src="<%=result.getPurl()%>"  alt="imagetake" width="300px" height="300px">
+							<h5 style="vertical-align: middle;"><a
+								href="./searchrecipe.do?recipename=<%=result.getRecipename()%>&recipenum=<%=result.getRecipenum()%>">
+								<%=result.getRecipename()%></a></h5>
+						</div>
 					</div>
-				</div>
-				<%}
-					} else {
-				%>
+				
+					</td>
+					<% }%>
+
+				</tr>
+
+			<%} else {%>
 				<tr>
 					<td colspan="2">
 						<h3>조회결과가 없습니다.</h3>
@@ -60,9 +61,11 @@ body, h1, h2, h3, h4, h5, h6 {
 				<%
 					}
 				%>
-
+			
 			</table>
 		</div>
 	</div>
+
+
 </body>
 </html>

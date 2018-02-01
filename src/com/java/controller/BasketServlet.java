@@ -27,7 +27,6 @@ public class BasketServlet extends HttpServlet {
 		int usernum = user.getUsernum();
 
 		BasketDAO basketDao = new BasketDAO();
-
 		ArrayList<Ingredient> ingredientList = basketDao.getIngredientList(usernum);
 		request.setAttribute("ingredientList", ingredientList);
 		RequestDispatcher rd = request.getRequestDispatcher("BasketList.jsp");

@@ -27,7 +27,6 @@ public class SearchServlet extends HttpServlet {
 		SearchDAO searchDao = new SearchDAO();
 		ArrayList<Recipe> searchList = searchDao.searchRecipeList(keyField, search);
 		request.setAttribute("searchList", searchList);
-
 		RequestDispatcher rd = request.getRequestDispatcher("SearchList.jsp");
 		rd.forward(request, response);
 		return;

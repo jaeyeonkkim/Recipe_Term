@@ -14,24 +14,11 @@
 <jsp:include page="top_menu.jsp" />
 <jsp:include page="login.jsp" />
 
-		<h1>추천레시피</h1>
+		<h1 style = "margin-bottom: 30px; margin-top: 30px;">추천레시피</h1>
 		
 		<fieldset style="width: 600px">
 			<legend>맑은 날</legend>
-			<a class = "nav-link" href=""> 
-			<img alt="img" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=1268&q=80.jpg"style="width: 100%"></a>
-		</fieldset>
-
-		<fieldset style="width: 600px; float: left">
-			<legend>비오는 날</legend>
-		
 			<table class="w3-table">
-            <thead>
-               <tr>
-                  <th><h5>레시피 이름</h5></th>
-                  <th><h5>종류</h5></th>
-               </tr>
-            </thead>
             <tbody>
                <%
                   ArrayList<Recipe> list1 = (ArrayList<Recipe>) request.getAttribute("list");
@@ -39,8 +26,40 @@
                      for (Recipe recipe : list1) {
                %>
                <tr>
-                  <td><a class = "nav-link" href="./Searchrecipe2.do" title = "recipename"><%=recipe.getRecipename()%></a></td>
-                  <td><%=recipe.getRtype() %></td>
+               		<td><img src="<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></td>
+               		<td><a href="./searchrecipe.do?recipename=<%=recipe.getRecipename()%>&recipenum=<%=recipe.getRecipenum()%>">
+						<%=recipe.getRecipename()%></a></td>
+               		<td><%=recipe.getRlevel() %></td>
+               </tr>
+               <%
+                  	}
+                  } else {
+               %>
+               <tr>
+                  <td colspan="2">
+                     <h3>조회결과가 없습니다.</h3>
+                  </td>
+               </tr>
+               <% }%>
+               </tbody>
+			</table>
+		</fieldset>
+
+		<fieldset style="width: 600px; float: left">
+			<legend>비오는 날</legend>
+		
+			<table class="w3-table">
+            <tbody>
+               <%
+                  ArrayList<Recipe> list2 = (ArrayList<Recipe>) request.getAttribute("list1");
+               if (list2.size() > 0) {
+                     for (Recipe recipe : list2) {
+               %>
+               <tr>
+               		<td><img src="<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></td>
+               		<td><a href="./searchrecipe.do?recipename=<%=recipe.getRecipename()%>&recipenum=<%=recipe.getRecipenum()%>">
+						<%=recipe.getRecipename()%></a></td>
+               		<td><%=recipe.getRlevel() %></td>
                </tr>
                <%
                   	}
@@ -58,13 +77,31 @@
 		
 		<fieldset style="width: 600px; float: right">
 			<legend>주말 저녁</legend>
-			<img alt="img"
-				src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?auto=format&fit=crop&w=1268&q=80.jpg"
-				style="width: 100%">
-
+						<table class="w3-table">
+            <tbody>
+               <%
+                  ArrayList<Recipe> list3 = (ArrayList<Recipe>) request.getAttribute("list2");
+               if (list3.size() > 0) {
+                     for (Recipe recipe : list3) {
+               %>
+               <tr>
+               		<td><img src="<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></td>
+               		<td><a href="./searchrecipe.do?recipename=<%=recipe.getRecipename()%>&recipenum=<%=recipe.getRecipenum()%>">
+						<%=recipe.getRecipename()%></a></td>
+               		<td><%=recipe.getRlevel() %></td>
+               </tr>
+               <%
+                  	}
+                  } else {
+               %>
+               <tr>
+                  <td colspan="2">
+                     <h3>조회결과가 없습니다.</h3>
+                  </td>
+               </tr>
+               <% }%>
+               </tbody>
+			</table>
 		</fieldset>
-
-
 </body>
-
 </html>

@@ -19,7 +19,7 @@ public class LevelDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "select r.recipename, r.rlevel, r.purl " 
+		String sql = "select r.recipename, r.rlevel, r.purl, r.recipe_num " 
 							+ "from recipe r " 
 							+ "where r.rlevel = ?";
 
@@ -29,7 +29,7 @@ public class LevelDAO {
 			stmt.setString(1, keyField);
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-				list.add(new Recipe(rs.getString(1), rs.getString(2), rs.getString(3)));
+				list.add(new Recipe(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
 			}
 
 		} catch (SQLException e) {

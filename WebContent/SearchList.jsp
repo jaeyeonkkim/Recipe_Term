@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Search List</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -26,8 +26,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
          <table class="w3-table">
             <thead>
                <tr>
-                  <th><h3>난이도</h3></th>
-                  <th><h3>레시피명</h3></th>
+                  <th width="150"><h3>난이도</h3></th>
+                  <th width="150"><h3>레시피명</h3></th>
+                  <th></th>
                </tr>
             </thead>
             <tbody>
@@ -38,7 +39,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
                %>
                <tr>
                <td><%=result.getRlevel()%></td>
-                  <td><%=result.getRecipename()%></td>
+                  <td><a href="./searchrecipe.do?recipename=<%=result.getRecipename()%>&recipenum=<%=result.getRecipenum()%>">
+						<%=result.getRecipename()%></a></td>
                   <td><img src="<%=result.getPurl()%>"
                style="width: 100%; max-width: 1000px" class="w3-margin-top"></td>
  
@@ -56,12 +58,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
             </tbody>
          </table>
-
-         
-         <p>
-           <%--  <img src=<%=result.ge%>
-               style="width: 100%; max-width: 1000px" class="w3-margin-top"> --%>
-         </p>
       </div>
    </div>
 </body>

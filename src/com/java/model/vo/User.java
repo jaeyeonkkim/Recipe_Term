@@ -9,6 +9,37 @@ public class User {
 	private int col;
 	private int winnum;
 
+	public User() {
+		super();
+	}
+
+	public User(String userId) {
+		super();
+		this.userId = userId;
+	}
+	
+	public User(int usernum, String userId) {
+		super();
+		this.usernum = usernum;
+		this.userId = userId;
+	}
+
+	public User(String userId, String password) {
+		super();
+		this.userId = userId;
+		this.password = password;
+	}
+
+	public User(int usernum, String userId, String password, String tel, int cOL, int winnum) {
+		super();
+		this.usernum = usernum;
+		this.userId = userId;
+		this.password = password;
+		this.tel = tel;
+		this.col = cOL;
+		this.winnum = winnum;
+	}
+
 	public int getUsernum() {
 		return usernum;
 	}
@@ -54,37 +85,6 @@ public class User {
 	}
 
 	public void setWinnum(int winnum) {
-		this.winnum = winnum;
-	}
-
-	public User() {
-		super();
-	}
-
-	public User(String userId) {
-		super();
-		this.userId = userId;
-	}
-
-	public User(int usernum, String userId) {
-		super();
-		this.usernum = usernum;
-		this.userId = userId;
-	}
-
-	public User(String userId, String password) {
-		super();
-		this.userId = userId;
-		this.password = password;
-	}
-
-	public User(int usernum, String userId, String password, String tel, int cOL, int winnum) {
-		super();
-		this.usernum = usernum;
-		this.userId = userId;
-		this.password = password;
-		this.tel = tel;
-		this.col = cOL;
 		this.winnum = winnum;
 	}
 

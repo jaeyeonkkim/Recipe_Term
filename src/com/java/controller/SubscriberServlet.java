@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.java.model.dao.SubscriberDAO;
+import com.java.model.dao.SubscribeDAO;
 import com.java.model.vo.User;
 
 @WebServlet("/Subscriber.do")
@@ -25,7 +25,7 @@ public class SubscriberServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		int usernum = user.getUsernum();
 
-		SubscriberDAO subscriberDAO = new SubscriberDAO();
+		SubscribeDAO subscriberDAO = new SubscribeDAO();
 
 		ArrayList<User> subscriberList = subscriberDAO.getSubscriberList(usernum);
 		request.setAttribute("subscriberList", subscriberList);
