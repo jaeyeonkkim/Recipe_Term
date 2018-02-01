@@ -23,6 +23,9 @@
 	text-align: center;
 	margin-top: 1cm;
 }
+.effect img {
+    border-radius: 20px;
+}
 </style>
 
 <title>레시피 볼래?</title>
@@ -81,7 +84,8 @@
 				<tr>
 					<form method="post" action="./count.do?contestnum=<%=result.getContestnum()%>&recipenum=<%=result.getRecipenum()%>">
 						<td><center>
-								<img src="<%=result.getPurl()%>" width="350" height="300">
+						<div class="effect">
+								<img src="<%=result.getPurl()%>" width="350" height="300"></div>
 								<center>
 									<input type="submit" value="투표하기"></td>
 					</form>

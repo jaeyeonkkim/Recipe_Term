@@ -41,9 +41,9 @@
 					<div class="form-group">
 						${sessionScope.user.userId}님 로그인 중
 					</div>
-					<a href="./logout.do" class="btn btn-outline-secondary">logout</a>
-					<a href="./MyRecipe.do" class="btn btn-outline-secondary">My page</a>
-					<a href="./enroll.jsp" class="btn btn-outline-secondary">Enroll<br>Recipe</a>
+					<a href="./logout.do" class="btn btn-primary">logout</a>
+					<a href="./MyRecipe.do" class="btn btn-primary">My page</a>
+					<a href="./enroll.jsp" class="btn btn-primary">Enroll<br>Recipe</a>
 				</fieldset>
 
 			</div>
@@ -62,8 +62,8 @@
 							type="password" class="form-control" id="exampleInputPassword1"
 							placeholder="Password" name="password">
 					</div>
-					<input type="submit" value="Login" class="btn btn-outline-secondary" />
-					<input type="reset" value="Back" class="btn btn-outline-secondary" />
+					<input type="submit" value="Login" class="btn btn-primary" />
+					<input type="reset" value="Back" class="btn btn-primary" />
 				</fieldset>
 			</form>
 		</c:otherwise>

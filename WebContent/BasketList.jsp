@@ -2,7 +2,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> -->
 <!DOCTYPE html>
 <html>
 <title>Basket List</title>
@@ -20,11 +19,14 @@ body, h1, h2, h3, h4, h5, h6 {
 	<jsp:include page="top_menu.jsp" />
 
 	<div style="width: 100%; overflow: hidden; margin: 0 auto">
-		<div style="width: 27%; float: left">
+		<div style="width: 30%; float: left">
 			<jsp:include page="login.jsp" />
 		</div>
+		
+		
+		
 
-		<div style="width: 60%; float: left">
+		<div class="w3-content">
 			<h3 class="w3-center w3-padding-64">
 				<span class="w3-tag w3-wide w3-xlarge">장바구니</span>
 			</h3>

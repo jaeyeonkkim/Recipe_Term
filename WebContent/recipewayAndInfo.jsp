@@ -13,36 +13,31 @@
 </head>
 <body>
 	<jsp:include page="top_menu.jsp" />
-
-	<div style="width: 100%; overflow: hidden; margin: 0 auto">
-		<div style="width: 27%; float: left">
+		<div style="width: 30%; float: left">
 			<jsp:include page="login.jsp" />
 		</div>
-
-		<div style="width: 73%; float: left">
+<div class="w3-container" id="about">
+	<div class="w3-content">
 			<h3 class="w3-center w3-padding-64">
-				<span class="w3-tag w3-wide w3-xlarge">레시피</span>
-			</h3>
-			<table class="w3-table" width="800">
-				<thead>
-					<tr>
-						<th width="150"><h3>레시피이름</h3></th>
-						<th width="100"><h3>종류</h3></th>
-						<th width="100"><h3>난이도</h3></th>
-						<th width="100"><h3>조리시간</h3></th>
-						<th width="100"></th>
-						<th width="100"></th>
-					</tr>
-				</thead>
-				<tbody>
+				<span class="w3-tag w3-wide w3-xlarge">레시피</span></h3>
+
+				<table class="w3-table" width="800">
+					<thead>
+						<tr style="text-align:center">
+							<th width="150"><h3>레시피이름</h3></th>
+							<th width="100"><h3>종류</h3></th>
+							<th width="100"><h3>난이도</h3></th>
+							<th width="100"><h3>조리시간</h3></th>
+							<th width="100"></th>
+							<th width="100"></th>
+						</tr>
+					</thead>
+					<tbody>
 					<%
 						int cnt = 0;
-						ArrayList<RecipewayAndInfo> recipewayAndInfo = (ArrayList<RecipewayAndInfo>) request
-								.getAttribute("recipewayAndInfo");
+						ArrayList<RecipewayAndInfo> recipewayAndInfo = (ArrayList<RecipewayAndInfo>) request.getAttribute("recipewayAndInfo");
 						if (recipewayAndInfo.size() > 0) {
 							for (RecipewayAndInfo recipeway : recipewayAndInfo) {
-					%>
-					<%
 						while (cnt < 1) {
 					%>
 					<tr>
@@ -79,40 +74,44 @@
 						<td width="100"><%=recipeway.getSequence()%></td>
 						<td width="800"><%=recipeway.getStory()%></td>
 					</tr>
+				</tbody>
 			</table>
 			<%
 				}
 
 				} else {
 			%>
+			<table>
 			<tr>
 				<td colspan="2">
 					<h3>조회결과가 없습니다.</h3>
 				</td>
 			</tr>
-			</tbody>
+			</table>
 			<%
 				}
 			%>
-			</table>
-			<table border="2" width="350">
+
+			
+			<br><br>
+			<table>
 				<thead>
-					<tr>
-						<th width="100">재료명</th>
-						<th width="150">수량</th>
+					<tr class="table-active" style="text-align:center">
+					<% ArrayList<Ingredient> recipeIngredient = (ArrayList<Ingredient>) request.getAttribute("recipeIngredient"); %>
+						<th scope="row" width="150">재료명</th>
+						<th scope="row" width="150">수량</th>
 						<c:if test="${sessionScope.user != null}">
-						<th width="100">장바구니</th>
+							<th scope="row"  width="150">장바구니</th>
 						</c:if>
 					</tr>
 				</thead>
 
 				<tbody>
 					<%
-						ArrayList<Ingredient> recipeIngredient = (ArrayList<Ingredient>) request.getAttribute("recipeIngredient");
 						if (recipeIngredient.size() > 0) {
 							for (Ingredient recipeway : recipeIngredient) {
 					%>
-					<tr>
+					<tr style="text-align:center">
 						<td><%=recipeway.getIndName()%></td>
 						<td><%=recipeway.getAmount()%></td>
 						<c:if test="${sessionScope.user != null}">
@@ -140,6 +139,7 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
+		</div>
+		<br><br>
 </body>
 </html>

@@ -24,8 +24,8 @@
 			<table class="w3-table">
 				<thead>
 					<tr>
-						<th><h3>재료명</h3></th>
-						<th><h3>수량</h3></th>
+						<th><h3>레시피명</h3></th>
+						<th><h3>종류</h3></th>
 						<th><h3>난이도</h3></th>
 						<th><h3>조리시간</h3></th>
 						<th></th>

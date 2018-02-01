@@ -17,7 +17,7 @@
 	<jsp:include page="top_menu.jsp" />
 
 	<div style="width: 100%; overflow: hidden; margin: 0 auto">
-		<div style="width: 27%; float: left">
+		<div style="width: 30%; float: left">
 			<jsp:include page="login.jsp" />
 		</div>
 

@@ -9,12 +9,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>
-		<a href="./MyRecipe.do">내 레시피</a> 
-		<a href="./Basket.do">장바구니</a> 
-		<a href="./Subscriber.do">나를 구독한 사람들</a>
-		<a href="./MyUser.do">내가 구독한 사람들</a>
-	</p>
+<table>
+<tr>
+		<td><a class = "btn-outline-primary" href="./MyRecipe.do">내 레시피</a> </td>
+		<td><a class = "btn-outline-primary" href="./Basket.do">장바구니</a> </td>
+
+</tr>
+<tr>
+		<td><a class = "btn-outline-primary" href="./Subscriber.do">나를 구독한 사람들</a> </td>
+		<td><a class = "btn-outline-primary" href="./MyUser.do">내가 구독한 사람들</a> </td>
+
+</tr>
+
+
+</table>
+		
+		
+
 
 </body>
 </html>

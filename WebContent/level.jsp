@@ -18,10 +18,18 @@ body, h1, h2, h3, h4, h5, h6 {
 .w3-bar-block .w3-bar-item {
 	padding: 20px
 }
+
+.effect img {
+    border-radius: 20px;
+}
+
 </style>
 <body>
 <jsp:include page="top_menu.jsp" />
-<jsp:include page="login.jsp" />
+	<div style="width:30%;float:left">
+		<jsp:include page="login.jsp"/>
+	</div>
+
 
 <div class="w3-container" id="about">
 	<div class="w3-content">
@@ -40,13 +48,14 @@ body, h1, h2, h3, h4, h5, h6 {
 					<%
 					for (Recipe result : searchList) { %>
 						<div class="w3-content" style="float: left; width: 33%;">
+							<div class="effect">
 							<img src="<%=result.getPurl()%>"  alt="imagetake" width="300px" height="300px">
-							<h5 style="vertical-align: middle;"><a
-								href="./searchrecipe.do?recipename=<%=result.getRecipename()%>&recipenum=<%=result.getRecipenum()%>">
+							</div>
+							<h5 style="vertical-align: middle;">
+							<a href="./searchrecipe.do?recipename=<%=result.getRecipename()%>&recipenum=<%=result.getRecipenum()%>">
 								<%=result.getRecipename()%></a></h5>
 						</div>
-					</div>
-				
+				</div>
 					</td>
 					<% }%>
 
@@ -61,7 +70,6 @@ body, h1, h2, h3, h4, h5, h6 {
 				<%
 					}
 				%>
-			
 			</table>
 		</div>
 	</div>

@@ -1,5 +1,6 @@
 <%@page import="com.java.model.vo.Recipe"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Objects" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,9 +13,11 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
+.effect img { border-radius: 20px;}
 </style>
 <body>
    <jsp:include page="top_menu.jsp" />
+   <jsp:include page="login.jsp" />
 
    <div class="w3-container" id="about">
       <div class="w3-content" style="max-width: 700px">
@@ -38,11 +41,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
                      for (Recipe result : searchList) {
                %>
                <tr>
-               <td><%=result.getRlevel()%></td>
-                  <td><a href="./searchrecipe.do?recipename=<%=result.getRecipename()%>&recipenum=<%=result.getRecipenum()%>">
-						<%=result.getRecipename()%></a></td>
-                  <td><img src="<%=result.getPurl()%>"
-               style="width: 100%; max-width: 1000px" class="w3-margin-top"></td>
+               <td><% if(Objects.equals(result.getRlevel(),"초급")) {%>
+               				<div class="w3-text-red"><h3>★</h3></div>
+               				<%}else if(Objects.equals(result.getRlevel(),"중급")){%>
+               				<div class="w3-text-red"><h3>★★★</h3></div>
+               				<%}else if(Objects.equals(result.getRlevel(),"고급")){%>
+               				<div class="w3-text-red"><h3>★★★★★</h3></div>
+               				<%} %></td>
+                  <td><h4><a href="./searchrecipe.do?recipename=<%=result.getRecipename()%>&recipenum=<%=result.getRecipenum()%>"><%=result.getRecipename()%></a></h4></td>
+                  <td><div class="effect"><img src="<%=result.getPurl()%>"style="width:250px; height:200px; max-width: 1000px" class="w3-margin-top"></div></td>
  
                </tr>
                <%
