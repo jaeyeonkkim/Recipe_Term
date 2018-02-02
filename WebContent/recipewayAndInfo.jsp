@@ -82,8 +82,7 @@
 				<% if(recipeway.getRecipenum()>30){ %>
                		<td><div class="effect"><img src="/jay_0129/upload/<%=recipeway.getPicture()%>" alt="image"	width="300" height="300"></div></td>
                	<% }else{%>
-               	<td><div class="effect"><img src="/jay_0129/upload/<%=recipeway.getPicture()%>" alt="image"	width="300" height="300"></div></td>
-               		<%-- <td><div class="effect"><img src=<%=recipeway.getPicture()%>" alt="image"	width="300" height="300"></div></td> --%>
+               		<td><div class="effect"><img src=<%=recipeway.getPicture()%>" alt="image"	width="300" height="300"></div></td>
                	<%} %>
                	<td width="800"><%=recipeway.getStory()%></td>
 				</tr>
