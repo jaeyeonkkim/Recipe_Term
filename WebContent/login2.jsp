@@ -18,10 +18,12 @@
 #loginStyle {
 	margin: auto;
 	text-align: center;
-	width: 400px;
-	position: absolute;
-	top:10px;
-	right: 10px;
+	float: left;
+	margin-top: 1cm;
+	margin-bottom: 1cm;
+	margin-left: 0.5cm;
+	margin-right: 0.5cm;
+	width: 300px;
 }
 </style>
 </head>
@@ -34,26 +36,35 @@
 	<c:choose>
 		<c:when test="${sessionScope.user != null}">
 			<div id=loginStyle>
+				<fieldset>
+					<legend>My Page</legend>
 					<div class="form-group">
 						${sessionScope.user.userId}님 로그인 중
 					</div>
 					<a href="./logout.do" class="btn btn-primary">logout</a>
 					<a href="./MyRecipe.do" class="btn btn-primary">My page</a>
 					<a href="./enroll.jsp" class="btn btn-primary">Recipe</a>
+				</fieldset>
+
 			</div>
 		</c:when>
 		<c:otherwise>
 			<form id=loginStyle method="post" action="./login.do">
+				<fieldset>
+					<legend>Login</legend>
 					<div class="form-group">
-						<label for="exampleInputEmail1" style="text-align: left;">ID</label> <input type="text"
-							class="form-control" id="exampleInputEmail1" placeholder="ID" style="width :30%; display: inline-block"
+						<label for="exampleInputEmail1">ID</label> <input type="text"
+							class="form-control" id="exampleInputEmail1" placeholder="ID"
 							name="userid">
-
-						<label for="exampleInputPassword1"  style="text-align: left;">PW</label> <input
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label> <input
 							type="password" class="form-control" id="exampleInputPassword1"
-							placeholder="Password" name="password" style="width :30%; display: inline-block">
-						<input type="submit" value="Login" class="btn btn-primary" />
-					</div>					
+							placeholder="Password" name="password">
+					</div>
+					<input type="submit" value="Login" class="btn btn-primary" />
+					<input type="reset" value="Back" class="btn btn-primary" />
+				</fieldset>
 			</form>
 		</c:otherwise>
 	</c:choose>

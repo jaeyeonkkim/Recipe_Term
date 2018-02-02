@@ -12,15 +12,16 @@
 	<jsp:include page="top_menu.jsp" />
 
 	<div style="width: 100%; overflow: hidden; margin: 0 auto">
-		<div style="width: 27%; float: left">
+		
 			<jsp:include page="login.jsp" />
-		</div>
-
-		<div style="width: 60%; float: left">
-			<h3 class="w3-center w3-padding-64">
-				<span class="w3-tag w3-wide w3-xlarge">즐겨찾는 레시피</span>
-			</h3>
+		
+</div>
+<h3 class="w3-center w3-padding-64" >
+	<span class="w3-tag w3-wide w3-xlarge">즐겨찾는 레시피</span></h3>
+	<div class="w3-content" style="max-width:700px">
 			<jsp:include page="MyPageManu.jsp" />
+			</div>
+			<br><br>
 			<table class="w3-table">
 				<thead>
 					<tr>
@@ -47,8 +48,7 @@
 						<td><%=myRecipe.getRtime()%></td>
 						<td><form method="post"
 								action="./CancelMyRecipe.do?recipenum=<%=myRecipe.getRecipenum()%>&list=all">
-								<input type="submit" value="취소"
-									class="btn btn-outline-secondary" />
+								<input type="submit" value="취소" class="btn btn-outline-secondary" />
 							</form></td>
 					</tr>
 					<%
@@ -72,9 +72,5 @@
 				</tbody>
 			</table>
 			
-		</div>
-	</div>
-
-
 </body>
 </html>

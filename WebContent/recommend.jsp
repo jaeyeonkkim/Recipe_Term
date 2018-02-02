@@ -26,11 +26,11 @@
 		<jsp:include page="login.jsp"/>
 	</div>
 
-	<div class="w3-content">
-			<h3 class="w3-center w3-padding-64">
-				<span class="w3-tag w3-wide w3-xlarge">추천레시피</span></h3>
+<h3 class="w3-center w3-padding-64" >
+	<span class="w3-tag w3-wide w3-xlarge">추천 레시피</span></h3>
+	<div class="w3-content" style="max-width:700px">
 		
-		<fieldset style="width: 700px; float: right">
+		<fieldset style="width: 700px;">
 			<legend>맑은 날</legend>
 			<table class="w3-table">
             <tbody>
@@ -70,7 +70,7 @@
 			</table>
 		</fieldset>
 
-		<fieldset style="width: 700px; float: right">
+		<fieldset style="width: 700px;">
 			<legend>비오는 날</legend>
 			<table class="w3-table">
             <tbody>
@@ -111,7 +111,7 @@
 		</fieldset>
 		
 		
-		<fieldset style="width: 700px; float: right">
+		<fieldset style="width: 700px;">
 			<legend>주말 저녁</legend>
 			<table class="w3-table">
             <tbody>

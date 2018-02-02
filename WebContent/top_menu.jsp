@@ -48,44 +48,13 @@
 	margin-bottom: 1cm;
 	    
 }
-/* body {
-    position:relative;
-    z-index:1;
-}
-body:after {
-    background-image:url(https://images.unsplash.com/photo-1441123285228-1448e608f3d5?auto=format&fit=crop&w=1350&q=80.jpg);
-    top:0;
-    left:0;
-    position:absolute;
-    background-size:100%;
-    opacity:0.5!important;
-    filter:alpha(opacity=50);
-    z-index:-1;
-    content:"";
-    width:100%;
-    height:100%;
-        -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-} */
 
-
-/* body{
-    background: url(https://images.unsplash.com/photo-1441123285228-1448e608f3d5?auto=format&fit=crop&w=1350&q=80.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
- */
 
 </style>
 </head>
 <body>
 	<div id="centerStyle">
-		<h2><a href="./main.jsp">레시피 볼래?</a></h2>
+		<h2><a href="./main.do">레시피 볼래?</a></h2>
 
 	</div>
 

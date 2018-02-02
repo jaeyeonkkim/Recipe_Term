@@ -12,15 +12,15 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 <style>
-#loginStyle {
+#enrollStyle {
 	margin: auto;
-	text-align: center;
+ 	text-align: center;
 	float: left;
 	margin-top: 1cm;
 	margin-bottom: 1cm;
 	margin-left: 0.5cm;
 	margin-right: 0.5cm;
-	width: 300px;
+	width: 500px;
 }
 </style>
 </head>
@@ -47,7 +47,7 @@
 			}
 		%>
 		
-		<form id=loginStyle method="post" enctype="multipart/form-data"
+		<form id=enrollStyle method="post" enctype="multipart/form-data"
 			action="./enrollRecipeway.do">
 			
 			<fieldset>

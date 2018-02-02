@@ -31,10 +31,10 @@ body, h1, h2, h3, h4, h5, h6 {
 	</div>
 
 
+<h3 class="w3-center w3-padding-64" >
+	<span class="w3-tag w3-wide w3-xlarge">검색결과</span></h3>
 <div class="w3-container" id="about">
 	<div class="w3-content">
-			<h3 class="w3-center w3-padding-64">
-				<span class="w3-tag w3-wide w3-xlarge">검색결과</span></h3>
 
 		<table class="w3-table">
 

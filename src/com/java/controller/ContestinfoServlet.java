@@ -17,6 +17,20 @@ import com.java.model.vo.ContestInfo;
 public class ContestinfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+
+		RecipeDAO contestinfoDao = new RecipeDAO(); // DAO는 결과만 줄 뿐
+		ArrayList<ContestInfo> contestList = contestinfoDao.contestinfoRecipe();
+		request.setAttribute("contestList", contestList);
+		RequestDispatcher rd = request.getRequestDispatcher("contest.jsp");
+		rd.forward(request, response);
+
+		return;
+
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");

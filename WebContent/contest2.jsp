@@ -57,11 +57,15 @@
 			<jsp:include page="login.jsp" />
 		</div>
 
-<h3 class="w3-center w3-padding-64" >
-	<span class="w3-tag w3-wide w3-xlarge">오늘의 경쟁</span></h3>
-
+<h3 class="w3-center "  style="padding-top: 120px!important; padding-bottom: 64px!important;">
+	<span class="w3-tag w3-wide w3-xlarge">레시피 경쟁</span></h3>
+	
+		<div style="width: 100%; float: left">
+			<h2>
+				<center>오늘의 경쟁 메뉴
+			</h2>
 			
-			<table style="width: 50%; margin: 0 auto;">
+			<table style="width: 50%">
 			<%
 			ArrayList<ContestInfo> contestList = (ArrayList<ContestInfo>) request.getAttribute("contestList");
 			if (contestList.size() > 0) {%>
@@ -72,18 +76,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
 			<%for (ContestInfo result : contestList) { %>
-					<td style="padding:10px; padding-top:10px; text-align:center">
+				<tr>
+					<th><h4><%=result.getUserid() %>의 <%=result.getRecipename() %></h4></th>
+				</tr>
+				<tr>
+						<td><center>
 						<div class="effect">
-						<h4><%=result.getUserid() %>의 <%=result.getRecipename() %></h4>
 						<img src="<%=result.getPurl()%>" width="350" height="300"></div>
+								<center>
 					<form method="post" action="./count.do?contestnum=<%=result.getContestnum()%>&recipenum=<%=result.getRecipenum()%>">
 									<input type="submit" class="btn btn-outline-secondary" value="투표하기"></td>
 					</form>
-					</td>
+				</tr>
 			<% }%>
-			</tr>
 			</tbody>
 			<% }%>
 </table>
@@ -92,13 +98,14 @@
 			<form action="./ContestResult.do" method="post">
 				<h3>
 					<center>
-						<input type="submit" class="btn btn-outline-secondary" value="결과보기">
+						<input type="submit" class="btn btn-outline-secondary"
+							value="결과보기">
 				</h3>
 			</form>
 
 		</div>
 	</div>
-<br><br>
+
 
 </body>
 </html>

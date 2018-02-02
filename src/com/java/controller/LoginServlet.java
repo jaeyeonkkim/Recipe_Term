@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 		if (userNum != 0){
 			HttpSession session = request.getSession();
 			session.setAttribute("user", new User(userNum, userid));
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("contestinfo.do");
 			return;
 		}else{
 			request.setAttribute("errorMessage", " 아이디와 비밀번호를 다시 입력해주세요."); //이름과 값을 저장(보관함)

@@ -34,6 +34,7 @@ body, h1, h2, h3, h4, h5, h6 {
 			<table class="w3-table" width="800">
 				<thead>
 					<tr>
+						<th width="150"><h3>레시피</h3></th>
 						<th width="150"><h3>재료명</h3></th>
 						<th width="150"><h3>수량</h3></th>
 					</tr>

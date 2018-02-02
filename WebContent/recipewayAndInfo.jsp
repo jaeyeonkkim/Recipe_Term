@@ -23,18 +23,18 @@
 		<div style="width: 30%; float: left">
 			<jsp:include page="login.jsp" />
 		</div>
-<div class="w3-container" id="about">
-	<div class="w3-content">
 			<h3 class="w3-center w3-padding-64">
 				<span class="w3-tag w3-wide w3-xlarge">레시피</span></h3>
+<div class="w3-container" id="about">
+	<div class="w3-content">
 
-				<table class="w3-table" width="800">
+				<table class="w3-table" width="800" >
 					<thead>
-						<tr style="text-align:center">
-							<th width="150"><h3>레시피이름</h3></th>
-							<th width="100"><h3>종류</h3></th>
-							<th width="100"><h3>난이도</h3></th>
-							<th width="100"><h3>조리시간</h3></th>
+						<tr style="text-align:center" class="table-active">
+							<th width="150"><h4>레시피이름</h4></th>
+							<th width="100"><h4>종류</h4></th>
+							<th width="100"><h4>난이도</h4></th>
+							<th width="100"><h4>조리시간</h4></th>
 							<th width="100"></th>
 							<th width="100"></th>
 						</tr>
@@ -48,10 +48,10 @@
 						while (cnt < 1) {
 					%>
 					<tr>
-						<td><%=recipeway.getRecipename()%></td>
-						<td><%=recipeway.getRtype()%></td>
-						<td><%=recipeway.getRlevel()%></td>
-						<td><%=recipeway.getRtime()%></td>
+						<td><h3><%=recipeway.getRecipename()%></h3></td>
+						<td><h3><%=recipeway.getRtype()%></h3></td>
+						<td><h3><%=recipeway.getRlevel()%></h3></td>
+						<td><h3><%=recipeway.getRtime()%></h3></td>
 						<c:if test="${sessionScope.user != null}">
 							<td>
 								<form method="post"
@@ -71,10 +71,21 @@
 					</tr>
 				</tbody>
 			</table>
+			<br><br>
+			
+			<hr align="left" size="10" width="600px" color="#0000FF" />
+
+			
+			<br><br>
+			
 			<%
 				cnt++;
 						}
 			%>
+
+				
+			
+			
 			<table class="w3-table" width="900">
 				<tbody>
 				<tr>
@@ -104,6 +115,7 @@
 				}
 			%>
 
+		
 			
 			<br><br>
 			<table>
