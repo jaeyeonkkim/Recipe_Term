@@ -48,9 +48,13 @@ body, h1, h2, h3, h4, h5, h6 {
 					<%
 					for (Recipe result : searchList) { %>
 						<div class="w3-content" style="float: left; width: 33%;">
-							<div class="effect">
-							<img src="<%=result.getPurl()%>"  alt="imagetake" width="300px" height="300px">
-							</div>
+							
+							<% if(result.getRecipenum()>30){ %>
+               					<div class="effect"><img src="/jay_0129/upload/<%=result.getPurl()%>" alt="image"	width="300" height="300"></div>
+               				<% }else{%>
+               					<div class="effect"><img src=<%=result.getPurl()%>" alt="image"	width="300" height="300"></div>
+               				<%} %>
+							
 							<h5 style="vertical-align: middle;">
 							<a href="./searchrecipe.do?recipename=<%=result.getRecipename()%>&recipenum=<%=result.getRecipenum()%>">
 								<%=result.getRecipename()%></a></h5>

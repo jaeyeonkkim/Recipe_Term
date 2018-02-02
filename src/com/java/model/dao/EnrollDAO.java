@@ -8,8 +8,8 @@ import com.java.util.DButil;
 
 public class EnrollDAO {
 
-	public boolean signeEnroll(String recipename, String rtype, String rlevel, int rlike, 
-			String rtime, int rclick, int rscrap, int usernum, String purl){
+	public boolean signeEnroll(String recipename, String rtype, String rlevel, 
+			String rtime, int usernum, String recipePicture){
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
@@ -22,12 +22,12 @@ public class EnrollDAO {
 			stmt.setString(1, recipename);
 			stmt.setString(2, rtype);
 			stmt.setString(3, rlevel);
-			stmt.setInt(4, rlike);
+			stmt.setInt(4, 0);
 			stmt.setString(5, rtime);
-			stmt.setInt(6, rclick);
-			stmt.setInt(7, rscrap);
+			stmt.setInt(6, 0);
+			stmt.setInt(7, 0);
 			stmt.setInt(8, usernum);
-			stmt.setString(9, purl);
+			stmt.setString(9, recipePicture);
 
 			stmt.executeUpdate();
 

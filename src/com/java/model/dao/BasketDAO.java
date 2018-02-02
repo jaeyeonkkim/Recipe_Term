@@ -58,7 +58,7 @@ public class BasketDAO {
 						+ "where b.usernum = ? "
 						+ "and i.indnum = b.indnum "
 						+ "and r.RECIPE_NUM=i.RECIPE_NUM "
-						+ "ORDER BY scrapdate) "
+						+ "ORDER BY scrapdate desc) "
 						+ "where rownum<=3";
 
 		try {

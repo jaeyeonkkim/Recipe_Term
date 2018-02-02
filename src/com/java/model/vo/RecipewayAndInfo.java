@@ -10,9 +10,10 @@ public class RecipewayAndInfo {
 	private String story;
 	private int recipenum;
 	private int usernum;
+	private String picture;
 
 	public RecipewayAndInfo(String recipename, String rtype, String rlevel, String rtime, int sequence, String story,
-			int recipenum, int usernum) {
+			int recipenum, int usernum, String picture) {
 		super();
 		this.recipename = recipename;
 		this.rtype = rtype;
@@ -22,6 +23,7 @@ public class RecipewayAndInfo {
 		this.story = story;
 		this.recipenum = recipenum;
 		this.usernum = usernum;
+		this.picture = picture;
 	}
 
 	public RecipewayAndInfo(String recipename, String rtype, String rlevel, String rtime, int sequence, String story) {
@@ -97,6 +99,14 @@ public class RecipewayAndInfo {
 
 	public void setUsernum(int usernum) {
 		this.usernum = usernum;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	
 }

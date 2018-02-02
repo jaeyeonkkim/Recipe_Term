@@ -58,7 +58,7 @@ public class MyRecipeDAO {
 							+ "from recipe r, myrecipe mr "
 							+ "where mr.usernum = ? " 
 							+ "and r.recipe_num = mr.recipe_num "
-							+ "ORDER BY scrapdate) "
+							+ "ORDER BY scrapdate desc) "
 							+ "where rownum<=3";
 		try {
 			conn = DButil.getConnection();

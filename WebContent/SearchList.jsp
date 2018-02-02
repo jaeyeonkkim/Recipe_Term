@@ -49,8 +49,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
                				<div class="w3-text-red"><h3>★★★★★</h3></div>
                				<%} %></td>
                   <td><h4><a href="./searchrecipe.do?recipename=<%=result.getRecipename()%>&recipenum=<%=result.getRecipenum()%>"><%=result.getRecipename()%></a></h4></td>
-                  <td><div class="effect"><img src="<%=result.getPurl()%>"style="width:250px; height:200px; max-width: 1000px" class="w3-margin-top"></div></td>
- 
+ 				<% if(result.getRecipenum()>30){ %>
+               		<td><div class="effect"><img src="/jay_0129/upload/<%=result.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               	<% }else{%>
+               		<td><div class="effect"><img src=<%=result.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               		<%} %>
                </tr>
                <%
                    } 

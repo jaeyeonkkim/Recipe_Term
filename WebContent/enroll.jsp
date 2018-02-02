@@ -31,8 +31,8 @@
 	
 	
 	
-	<form action="Enroll.do?rlike=0&rclick=0&rscrap=0&purl=0" method="POST" style="display: inherit;">
-	
+	<form action="./Enroll.do" method="POST" enctype="multipart/form-data"style="display: inherit;">
+
 	<div id=enrollStyle>
 		<fieldset>
 			<legend style="text-align:center">Recipe Enroll</legend>
@@ -49,10 +49,11 @@
 				<option value="초급">초급</option>
 				</select> <br> <br>
 		조리시간 : <input type="text"  name="rtime" /> <br /><br>
+		<input type="file" name="recipePicture">
+	</form>
 		
 		<input type="submit" class="btn btn-outline-primary" value="등록" /> 
 		<input type="reset" class="btn btn-outline-primary" value="취소" />
-		
 		</fieldset>
 	</div>
 	</form>

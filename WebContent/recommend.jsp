@@ -40,7 +40,11 @@
                      for (Recipe recipe : list1) {
                %>
                <tr>
-               		<td><div class="effect"><img src="<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               <% if(recipe.getRecipenum()>30){ %>
+               		<td><div class="effect"><img src="/jay_0129/upload/<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               	<% }else{%>
+               		<td><div class="effect"><img src=<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               		<%} %>
                		<td><h3><a href="./searchrecipe.do?recipename=<%=recipe.getRecipename()%>&recipenum=<%=recipe.getRecipenum()%>">
 						<%=recipe.getRecipename()%></a></h3></td>
                		<td><% if(Objects.equals(recipe.getRlevel(),"초급")) {%>
@@ -76,7 +80,11 @@
                      for (Recipe recipe : list2) {
                %>
                <tr>
-               		<td><div class="effect"><img src="<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               		<% if(recipe.getRecipenum()>30){ %>
+               		<td><div class="effect"><img src="/jay_0129/upload/<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               	<% }else{%>
+               		<td><div class="effect"><img src=<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               		<%} %>
                		<td><h3><a href="./searchrecipe.do?recipename=<%=recipe.getRecipename()%>&recipenum=<%=recipe.getRecipenum()%>">
 						<%=recipe.getRecipename()%></a></h3></td>
                		<td><% if(Objects.equals(recipe.getRlevel(),"초급")) {%>
@@ -113,7 +121,11 @@
                      for (Recipe recipe : list3) {
                %>
                <tr>
-               		<td><div class="effect"><img src="<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               		<% if(recipe.getRecipenum()>30){ %>
+               		<td><div class="effect"><img src="/jay_0129/upload/<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               	<% }else{%>
+               		<td><div class="effect"><img src=<%=recipe.getPurl()%>" alt="image"	width="300" height="300"></div></td>
+               		<%} %>
                		<td><h3><a href="./searchrecipe.do?recipename=<%=recipe.getRecipename()%>&recipenum=<%=recipe.getRecipenum()%>">
 						<%=recipe.getRecipename()%></a></h3></td>
                		<td><% if(Objects.equals(recipe.getRlevel(),"초급")) {%>

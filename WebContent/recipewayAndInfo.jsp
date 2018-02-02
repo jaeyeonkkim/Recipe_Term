@@ -11,6 +11,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>RecipeWay And Information</title>
 </head>
+<style>
+
+.effect img {
+    border-radius: 20px;
+}
+
+</style>
 <body>
 	<jsp:include page="top_menu.jsp" />
 		<div style="width: 30%; float: left">
@@ -70,10 +77,16 @@
 			%>
 			<table class="w3-table" width="900">
 				<tbody>
-					<tr>
-						<td width="100"><%=recipeway.getSequence()%></td>
-						<td width="800"><%=recipeway.getStory()%></td>
-					</tr>
+				<tr>
+				<td width="100"><%=recipeway.getSequence()%></td>
+				<% if(recipeway.getRecipenum()>30){ %>
+               		<td><div class="effect"><img src="/jay_0129/upload/<%=recipeway.getPicture()%>" alt="image"	width="300" height="300"></div></td>
+               	<% }else{%>
+               	<td><div class="effect"><img src="/jay_0129/upload/<%=recipeway.getPicture()%>" alt="image"	width="300" height="300"></div></td>
+               		<%-- <td><div class="effect"><img src=<%=recipeway.getPicture()%>" alt="image"	width="300" height="300"></div></td> --%>
+               	<%} %>
+               	<td width="800"><%=recipeway.getStory()%></td>
+				</tr>
 				</tbody>
 			</table>
 			<%

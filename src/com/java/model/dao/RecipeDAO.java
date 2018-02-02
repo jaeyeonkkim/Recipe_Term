@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.java.model.vo.ContestInfo;
 import com.java.model.vo.Ingredient;
 import com.java.model.vo.Recipe;
+import com.java.model.vo.RecipeWay;
 import com.java.model.vo.RecipewayAndInfo;
 import com.java.util.DButil;
 
@@ -24,7 +25,7 @@ public class RecipeDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		String sql = "select r.RECIPENAME, r.RTYPE, r.RLEVEL, r.RTIME, rw.SQEUENCE, rw.STORY, r.recipe_num, r.USERNUM " 
+		String sql = "select r.RECIPENAME, r.RTYPE, r.RLEVEL, r.RTIME, rw.SQEUENCE, rw.STORY, r.recipe_num, r.USERNUM, rw.PICTURE " 
 									+ "from recipe r, recipeway rw "
 									+ "where r.recipename=? "
 									+ "and rw.RECIPE_NUM=r.RECIPE_NUM";
@@ -36,7 +37,7 @@ public class RecipeDAO {
 			rs = stmt.executeQuery();
 			while (rs.next()) {				
 				list.add(new RecipewayAndInfo(rs.getString(1), rs.getString(2),rs.getString(3), 
-						rs.getString(4),rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8)));
+						rs.getString(4),rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9)));
 
 			}
 
@@ -179,19 +180,21 @@ public class RecipeDAO {
 		return recipeNum;
 	}	
 	
-	public boolean inputRecipeway(int recipenum, String recipeway) {
+	public boolean inputRecipeway(RecipeWay story) {
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		String sql = "INSERT INTO RECIPEWAY " 
-						+ "VALUES (?,recipeway_num11.nextval,?,0)";
+						+ "VALUES (?,?,?,?)";
 
 		try {
 			conn = DButil.getConnection();
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, recipenum);
-			stmt.setString(2, recipeway);
+			stmt.setInt(1, story.getRecipe_num());
+			stmt.setInt(2, story.getSequence());
+			stmt.setString(3, story.getStroy());
+			stmt.setString(4, story.getPicture());
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -204,28 +207,21 @@ public class RecipeDAO {
 
 	}
 
-	public boolean inputRecipewayComplete(int a) {
+	public boolean inputIngredient(String indname, String amount, int recipenum) {
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		String sql=null;
-		if(a==1){
-		sql = "DROP SEQUENCE recipeway_num11";
-		}
-		else{
-		sql= "CREATE SEQUENCE recipeway_num11 "
-						+ "START WITH 1 "
-						+ "INCREMENT BY 1 "
-						+ "MAXVALUE 100 "
-						+ "CYCLE";
-		}
+		String sql = "INSERT INTO INGREDIENT " 
+						+ "VALUES (indseq.nextval,?,?,?)";
 
 		try {
 			conn = DButil.getConnection();
 			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, indname);
+			stmt.setString(2, amount);
+			stmt.setInt(3, recipenum);
 			stmt.executeUpdate();
-
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -248,10 +244,6 @@ public class RecipeDAO {
 				+ "from contest c, recipe r, user_ u "
 				+ "where c.recipe_num = r.recipe_num and u.usernum = r.usernum "
 				+ "and (select sysdate from dual) between c.startdate and c.enddate";
-
-		
-		
-		
 		
 		try {
 			conn = DButil.getConnection();

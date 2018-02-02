@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import com.java.model.dao.EnrollDAO;
 import com.java.model.dao.RecipeDAO;
 import com.java.model.vo.User;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @WebServlet("/Enroll.do")
 public class EnrollServlet extends HttpServlet {
@@ -26,33 +28,42 @@ public class EnrollServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		int usernum = user.getUsernum();
 
-		String recipename = request.getParameter("recipename");
-		String rtype = request.getParameter("rtype");
-		String rlevel = request.getParameter("rlevel");
-		String rtime = request.getParameter("rtime");
+		MultipartRequest multi = null;
+		int fileMaxSize = 10 * 1024 * 1024; 
+		String savePath = getServletContext().getRealPath("/upload");
 		
-		String rlikee = request.getParameter("rlike");
-		int rlike = Integer.parseInt(rlikee);
-		String rclickk = request.getParameter("rclick");
-		int rclick = Integer.parseInt(rclickk);
-		String rscrapp = request.getParameter("rscrap");
-		int rscrap = Integer.parseInt(rscrapp);
-		String purl = request.getParameter("purl");
 
-		if (recipename == null || recipename.trim().length() == 0 || rtype == null || rtype.trim().length() == 0
-				|| rlevel == null || rlevel.trim().length() == 0 || rtime == null || rtime.trim().length() == 0) {
-			request.setAttribute("errorMessage", "유효성 검사 실패");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+		try {
+			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
+
+			String recipename = multi.getParameter("recipename");
+			String rtype = multi.getParameter("rtype");
+			String rlevel = multi.getParameter("rlevel");
+			String rtime = multi.getParameter("rtime");
+			String recipePicture = multi.getFilesystemName("recipePicture");
+
+
+			if (recipename == null || recipename.trim().length() == 0 || rtype == null || rtype.trim().length() == 0
+					|| rlevel == null || rlevel.trim().length() == 0 || rtime == null || rtime.trim().length() == 0) {
+				request.setAttribute("errorMessage", "유효성 검사 실패");
+				request.getRequestDispatcher("login.jsp").forward(request, response);
+				return;
+			}
+
+			EnrollDAO rollDao = new EnrollDAO();
+			rollDao.signeEnroll(recipename, rtype, rlevel, rtime, usernum, recipePicture);
+			RecipeDAO recipeDao = new RecipeDAO();
+
+			int recipenum = recipeDao.getRecipenum(usernum, recipename);
+			
+			request.setAttribute("recipeNum", recipenum);
+			RequestDispatcher rd = request.getRequestDispatcher("enrollIngredientList.jsp");
+			rd.forward(request, response);
+			
 			return;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
-		EnrollDAO rollDao = new EnrollDAO();
-		rollDao.signeEnroll(recipename, rtype, rlevel, rlike, rtime, rclick, rscrap, usernum, purl);
-		RecipeDAO recipeDao=new RecipeDAO();
-		int recipenum = recipeDao.getRecipenum(usernum, recipename);
-		request.setAttribute("recipeNum", recipenum);
-		RequestDispatcher rd = request.getRequestDispatcher("enrollRecipeway.jsp");
-		rd.forward(request, response);
-		return;
 	}
 }
